@@ -139,4 +139,18 @@ public class RegisterBusinessTest {
 
     }
 
+    @Test
+    @DisplayName("get free 250 when experienceYear > 1 and experienceYear <= 3")
+    public void case09() {
+        // Arrange
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+
+        // Act
+        int fee = registerBusiness.getFee(3);
+
+        // Assert
+        assertEquals(250, fee);
+
+    }
+
 }
