@@ -8,14 +8,13 @@ public class RegisterBusiness {
         Integer speakerId;
         String[] domains = { "gmail.com", "live.com" };
 
-        if (speaker.getFirstName() == null || speaker.getFirstName().trim().equals("")) {
+        if (isNullOrEmpty(speaker.getFirstName())) {
             throw new ArgumentNullException("First name is required.");
         }
-        if (speaker.getLastName() == null || speaker.getLastName().trim().equals("")) {
+        if (isNullOrEmpty(speaker.getLastName())) {
             throw new ArgumentNullException("Last name is required.");
         }
-
-        if (speaker.getEmail() == null || speaker.getEmail().trim().equals("")) {
+        if (isNullOrEmpty(speaker.getEmail())) {
             throw new ArgumentNullException("Email is required.");
         }
 
@@ -34,6 +33,10 @@ public class RegisterBusiness {
         }
 
         return speakerId;
+    }
+
+    private boolean isNullOrEmpty(String string) {
+        return string == null || string.trim().equals("");
     }
 
     int getFee(int experienceYear) {
