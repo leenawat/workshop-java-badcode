@@ -8,15 +8,7 @@ public class RegisterBusiness {
         Integer speakerId;
         String[] domains = { "gmail.com", "live.com" };
 
-        if (isNullOrEmpty(speaker.getFirstName())) {
-            throw new ArgumentNullException("First name is required.");
-        }
-        if (isNullOrEmpty(speaker.getLastName())) {
-            throw new ArgumentNullException("Last name is required.");
-        }
-        if (isNullOrEmpty(speaker.getEmail())) {
-            throw new ArgumentNullException("Email is required.");
-        }
+        validateInput(speaker);
 
         // Your Tasks ...
         String emailDomain = getEmailDomain(speaker.getEmail()); // Avoid ArrayIndexOutOfBound
@@ -33,6 +25,18 @@ public class RegisterBusiness {
         }
 
         return speakerId;
+    }
+
+    private void validateInput(Speaker speaker) {
+        if (isNullOrEmpty(speaker.getFirstName())) {
+            throw new ArgumentNullException("First name is required.");
+        }
+        if (isNullOrEmpty(speaker.getLastName())) {
+            throw new ArgumentNullException("Last name is required.");
+        }
+        if (isNullOrEmpty(speaker.getEmail())) {
+            throw new ArgumentNullException("Email is required.");
+        }
     }
 
     private boolean isNullOrEmpty(String string) {
