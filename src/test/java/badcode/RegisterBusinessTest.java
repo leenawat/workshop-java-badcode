@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class RegisterBusinessTest {
 
     @Test
-    @DisplayName("Throw exceptino with First name is requried.")
+    @DisplayName("Throw exception with First name is requried.")
     public void case01() {
         // Arrange
         RegisterBusiness registerBusiness = new RegisterBusiness();
@@ -23,7 +23,7 @@ public class RegisterBusinessTest {
     }
 
     @Test
-    @DisplayName("Throw exceptino with Last name is required.")
+    @DisplayName("Throw exception with Last name is required.")
     public void case02() {
         // Arrange
         RegisterBusiness registerBusiness = new RegisterBusiness();
@@ -41,7 +41,7 @@ public class RegisterBusinessTest {
     }
 
     @Test
-    @DisplayName("Throw exceptino with Email is required.")
+    @DisplayName("Throw exception with Email is required.")
     public void case03() {
         // Arrange
         RegisterBusiness registerBusiness = new RegisterBusiness();
@@ -60,7 +60,7 @@ public class RegisterBusinessTest {
     }
 
     @Test
-    @DisplayName("Throw exceptino with Speaker doesn't meet our standard rules.")
+    @DisplayName("Throw exception with Speaker doesn't meet our standard rules.")
     public void case04() {
         // Arrange
         RegisterBusiness registerBusiness = new RegisterBusiness();
@@ -77,5 +77,25 @@ public class RegisterBusinessTest {
 
         // Assert
         assertEquals("Speaker doesn't meet our standard rules.", exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("Throw exception with Can't save a speaker.")
+    public void case05() {
+        // Arrange
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        Speaker speaker = new Speaker();
+        speaker.setFirstName("my-firstname");
+        speaker.setLastName("my-lastname");
+        speaker.setEmail("my-email@gmail.com");
+
+        // Act
+        Exception exception = assertThrows(SaveSpeakerException.class,
+                () -> {
+                    registerBusiness.register(null, speaker);
+                });
+
+        // Assert
+        assertEquals("Can't save a speaker.", exception.getMessage());
     }
 }
