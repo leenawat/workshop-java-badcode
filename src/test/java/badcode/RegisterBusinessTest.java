@@ -97,6 +97,26 @@ public class RegisterBusinessTest {
     }
 
     @Test
+    @DisplayName("Throw exception with Email is required. but empty")
+    public void case031() {
+        // Arrange
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        Speaker speaker = new Speaker();
+        speaker.setFirstName("my-firstname");
+        speaker.setLastName("my-lastname");
+        speaker.setEmail("");
+
+        // Act
+        Exception exception = assertThrows(ArgumentNullException.class,
+                () -> {
+                    registerBusiness.register(null, speaker);
+                });
+
+        // Assert
+        assertEquals("Email is required.", exception.getMessage());
+    }
+
+    @Test
     @DisplayName("Throw exception with Speaker doesn't meet our standard rules.")
     public void case04() {
         // Arrange
