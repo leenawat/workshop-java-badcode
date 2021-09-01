@@ -98,4 +98,17 @@ public class RegisterBusinessTest {
         // Assert
         assertEquals("Can't save a speaker.", exception.getMessage());
     }
+
+    @Test
+    @DisplayName("get email domain gmail success")
+    public void case06() {
+        // Arrange
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        // Act
+        String domain = registerBusiness.getEmailDomain("my-email@gmail.com");
+
+        // Assert
+        assertEquals("gmail.com", domain);
+    }
+
 }
