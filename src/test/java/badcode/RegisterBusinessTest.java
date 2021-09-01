@@ -117,11 +117,25 @@ public class RegisterBusinessTest {
         // Arrange
         RegisterBusiness registerBusiness = new RegisterBusiness();
 
-        // Act
-        Exception exception = assertThrows(DomainEmailInvalidException.class,
+        // Act and Assert
+        assertThrows(DomainEmailInvalidException.class,
                 () -> {
                     registerBusiness.getEmailDomain("my-email-without-domain");
                 });
+
+    }
+
+    @Test
+    @DisplayName("get free 500 when experienceYear <= 1")
+    public void case08() {
+        // Arrange
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+
+        // Act
+        int fee = registerBusiness.getFee(1);
+
+        // Assert
+        assertEquals(500, fee);
 
     }
 
