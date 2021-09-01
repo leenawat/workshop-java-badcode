@@ -111,4 +111,18 @@ public class RegisterBusinessTest {
         assertEquals("gmail.com", domain);
     }
 
+    @Test
+    @DisplayName("Throw exception with DomainEmailInvalidException")
+    public void case07() {
+        // Arrange
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+
+        // Act
+        Exception exception = assertThrows(DomainEmailInvalidException.class,
+                () -> {
+                    registerBusiness.getEmailDomain("my-email-without-domain");
+                });
+
+    }
+
 }
