@@ -58,4 +58,24 @@ public class RegisterBusinessTest {
         // Assert
         assertEquals("Email is required.", exception.getMessage());
     }
+
+    @Test
+    @DisplayName("Throw exceptino with Speaker doesn't meet our standard rules.")
+    public void case04() {
+        // Arrange
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        Speaker speaker = new Speaker();
+        speaker.setFirstName("my-firstname");
+        speaker.setLastName("my-lastname");
+        speaker.setEmail("my-email@local.com");
+
+        // Act
+        Exception exception = assertThrows(SpeakerDoesntMeetRequirementsException.class,
+                () -> {
+                    registerBusiness.register(null, speaker);
+                });
+
+        // Assert
+        assertEquals("Speaker doesn't meet our standard rules.", exception.getMessage());
+    }
 }
