@@ -21,4 +21,22 @@ public class RegisterBusinessTest {
         // Assert
         assertEquals("First name is required.", exception.getMessage());
     }
+
+    @Test
+    @DisplayName("Throw exceptino with Last name is required.")
+    public void case02() {
+        // Arrange
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+        Speaker speaker = new Speaker();
+        speaker.setFirstName("my-firstname");
+
+        // Act
+        Exception exception = assertThrows(ArgumentNullException.class,
+                () -> {
+                    registerBusiness.register(null, speaker);
+                });
+
+        // Assert
+        assertEquals("Last name is required.", exception.getMessage());
+    }
 }
