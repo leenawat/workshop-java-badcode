@@ -239,6 +239,20 @@ public class RegisterBusinessTest {
     }
 
     @Test
+    @DisplayName("get free 0 when experienceYear > 9")
+    public void case13() {
+        // Arrange
+        RegisterBusiness registerBusiness = new RegisterBusiness();
+
+        // Act
+        int fee = registerBusiness.getFee(10);
+
+        // Assert
+        assertEquals(0, fee);
+
+    }
+
+    @Test
     @DisplayName("return id when save success")
     public void case12() {
         // Arrange
